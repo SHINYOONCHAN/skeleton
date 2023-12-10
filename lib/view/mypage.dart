@@ -30,37 +30,33 @@ class MyPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-        child: Obx(
-          () => controller.isLoading.value
-              ? _buildShimmerGrid()
-              : GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10),
-                  itemBuilder: (context, index) {
-                    return ProductTile(
-                      controller.productList[index],
-                    );
-                  },
-                  itemCount: controller.productList.length,
-                ),
-        ),
+        child: Obx(() => controller.isLoading.value
+                ? _buildShimmerGrid()
+                : _buildShimmerGrid()
+            // : GridView.builder(
+            //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 2,
+            //         mainAxisSpacing: 10,
+            //         crossAxisSpacing: 10),
+            //     itemBuilder: (context, index) {
+            //       return ProductTile(
+            //         controller.productList[index],
+            //       );
+            //     },
+            //     itemCount: controller.productList.length,
+            //   ),
+            ),
       ),
     );
   }
 
   Widget _buildShimmerGrid() {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
-        itemBuilder: (context, index) {
-          return const ProductTileShimmer();
-        },
-        itemCount: 6,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Shimmer.fromColors(
+        child: ProductTileShimmer(),
+        baseColor: Colors.grey.withOpacity(0.5),
+        highlightColor: Colors.white,
       ),
     );
   }
@@ -71,24 +67,47 @@ class ProductTileShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Stack(
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            color: Colors.grey,
+          ),
+          SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 50,
-                width: 50,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                ),
+                width: 250,
+                height: 18,
+                color: Colors.grey,
+              ),
+              SizedBox(height: 8),
+              Container(
+                width: 250,
+                height: 18,
+                color: Colors.grey,
+              ),
+              SizedBox(height: 8),
+              Container(
+                width: 250,
+                height: 18,
+                color: Colors.grey,
+              ),
+              SizedBox(height: 8),
+              Container(
+                width: 200,
+                height: 18,
+                color: Colors.grey,
               ),
             ],
-          ),
-        ]),
+          )
+        ],
       ),
     );
   }
