@@ -4,7 +4,7 @@ import 'package:skeleton/data/services.dart';
 
 class Controller extends GetxController {
   var productList = <Product>[].obs;
-  RxBool isLoading = true.obs; // RxBool로 타입 직접 지정
+  RxBool isLoading = true.obs;
 
   @override
   void onInit() {
@@ -14,7 +14,7 @@ class Controller extends GetxController {
 
   void fetchData() async {
     try {
-      isLoading.value = true; // RxBool의 value 속성 사용
+      isLoading.value = true;
 
       var products = await Services.fetchProducts();
 
@@ -22,7 +22,7 @@ class Controller extends GetxController {
         productList.value = products;
       }
     } finally {
-      isLoading.value = false; // RxBool의 value 속성 사용
+      isLoading.value = false;
     }
   }
 }
