@@ -1,5 +1,4 @@
 import 'package:skeleton/controller/controller.dart';
-import 'package:skeleton/view/product_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -14,7 +13,7 @@ class MyPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('skeleton'),
-        backgroundColor: Colors.amber[700],
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: const Icon(Icons.menu),
         actions: [
@@ -31,21 +30,8 @@ class MyPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
         child: Obx(() => controller.isLoading.value
-                ? _buildShimmerGrid()
-                : _buildShimmerGrid()
-            // : GridView.builder(
-            //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //         crossAxisCount: 2,
-            //         mainAxisSpacing: 10,
-            //         crossAxisSpacing: 10),
-            //     itemBuilder: (context, index) {
-            //       return ProductTile(
-            //         controller.productList[index],
-            //       );
-            //     },
-            //     itemCount: controller.productList.length,
-            //   ),
-            ),
+            ? _buildShimmerGrid()
+            : _buildShimmerGrid()),
       ),
     );
   }
@@ -55,8 +41,8 @@ class MyPage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: Shimmer.fromColors(
         child: ProductTileShimmer(),
-        baseColor: Colors.grey.withOpacity(0.5),
-        highlightColor: Colors.white,
+        baseColor: Color(0xFFE9E9E9),
+        highlightColor: Color(0xFFE9E9E9),
       ),
     );
   }
